@@ -1,8 +1,15 @@
+-- Defining AO vars to avoid linter errors (DO NOT COPY)
+inbox = {}
+handlers = {}
+ao = { send = function(a, b) return a end }
+
+
+---------
 -- Hangman Game Implementation in Lua
 
 -- Table to store game states
 Games = {}
-Words = {"MOON", "WORD", "GAME", "LUCK"}
+Words = { "MOON", "WORD", "GAME", "LUCK" }
 
 -- Function to start a new game
 function startGame()
@@ -25,10 +32,8 @@ function updateGame(game, message)
 
     if command == "start" then
         return "Game started: " .. #game.word .. " letter word: " .. string.rep("-", #game.word)
-
     elseif command == "abandon" then
         return "You gave up:  The word was: '" .. game.word .. "'"
-
     elseif command == "letter" then
         local letter = arg:upper()
         if letter:match("[A-Z]") then
@@ -56,7 +61,6 @@ function updateGame(game, message)
         else
             return "Invalid input! " .. game.status
         end
-
     elseif command == "guess" then
         local guess = arg:upper()
         if guess == game.word then
@@ -66,11 +70,14 @@ function updateGame(game, message)
             if game.incorrectGuesses >= game.maxIncorrectGuesses then
                 game.status = "Game over. The word was: '" .. game.word .. "'"
             else
-                return "Bad guess:    " .. #game.word .. " letter word: " .. string.rep("-", #game.word) .. ". You have " .. game.maxIncorrectGuesses - game.incorrectGuesses .. " guesses left."
+                return "Bad guess:    " ..
+                #game.word ..
+                " letter word: " ..
+                string.rep("-", #game.word) ..
+                ". You have " .. game.maxIncorrectGuesses - game.incorrectGuesses .. " guesses left."
             end
         end
         return game.status
-
     else
         return "Invalid command. " .. game.status
     end
@@ -82,7 +89,7 @@ function handleMessage(userId, message)
         local command, arg = message:match("(%a+)%s*(%a*)")
 
         if command ~= "start" then
-            return "No games started for this user. Commands: ".. Help
+            return "No games started for this user. Commands: " .. Help
         else
             Games[userId] = startGame()
         end
@@ -98,12 +105,12 @@ end
 
 -- ao Handlers
 handlers.append(
-    function (msg)
+    function(msg)
         if msg.from ~= ao.id then
             return -1
         end
     end,
-    function (msg)
+    function(msg)
         table.insert(inbox, msg)
         local msgBody = ''
         for i, t in ipairs(msg.tags) do
@@ -111,13 +118,10 @@ handlers.append(
                 msgBody = t.value
             end
         end
-        ao.send( { body = handleMessage(msg.from, msgBody) }, msg.from )
+        ao.send({ body = handleMessage(msg.from, msgBody) }, msg.from)
     end,
     "hangman"
 )
-
-
-
 
 
 

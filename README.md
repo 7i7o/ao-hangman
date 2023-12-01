@@ -15,14 +15,14 @@ The game works by receiving messages and replying to them with options.
 
 ## Examples:
 
-"User message" -> "Game response"
-
-- "start" -> "Game started. 4 letter word: - - - -"
-- "letter A" -> "Not included. 4 letter word: - - - -"
-- "letter M" -> "Included. 4 letter word: M - - -"
-- "guess MISS" -> "Bad guess. 4 letter word: M - - -"
-- "guess MOON" -> "Good Guess! Congratulations! You guessed the word 'MOON'"
-- "abandon" -> "Game ended. The word was: 'MOON'"
+|Player message|Game response|
+|---|---|
+|`start`      | `Game started: 4 letter word: ----`|
+|`letter A`   | `Bad guess:    4 letter word: ----`|
+|`letter M`   | `Good guess:   4 letter word: M---`|
+|`guess MISS` | `Bad guess:    4 letter word: M---`|
+|`guess MOON` | `Congratulations! You guessed the word 'MOON'`|
+|`abandon`    | `You gave up:  The word was: 'MOON'`|
 
 ## Version 0.0.1
 
