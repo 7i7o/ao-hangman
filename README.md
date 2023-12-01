@@ -23,3 +23,13 @@ The game works by receiving messages and replying to them with options.
 - "guess MISS" -> "Bad guess. 4 letter word: M - - -"
 - "guess MOON" -> "Good Guess! Congratulations! You guessed the word 'MOON'"
 - "abandon" -> "Game ended. The word was: 'MOON'"
+
+## Version 0.0.1
+
+First working version is in AO process `_iXqmk0xFd8jg3V3xgDcTrhSVU65HckkMbV9LsXIIM8`
+
+From any AOS process you can send a message by:
+
+`send("_iXqmk0xFd8jg3V3xgDcTrhSVU65HckkMbV9LsXIIM8", "your_message")`
+
+And then check your `inbox` 😉
