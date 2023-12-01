@@ -12,17 +12,20 @@ The game works by receiving messages and replying to them with options.
 - "abandon" Ends the game and replies with the word-guessing
 - "letter [letter]" Guess if the letter [letter] is included (only latin letters). Replies Good or Bad Guess and the game status
 - "guess [word]" Guess if the word to guess is [word]. Replies if you guessed and the game ended, or if you wasted a guess and the game status.
+- "add [word]" Add the word [word] into the list of possibilities.
 
 ## Examples:
 
-|Player message|Game response|
-|---|---|
-|`start`      | `Game started: 4 letter word: ----`|
-|`letter A`   | `Bad guess:    4 letter word: ----`|
-|`letter M`   | `Good guess:   4 letter word: M---`|
-|`guess MISS` | `Bad guess:    4 letter word: M---`|
-|`guess MOON` | `Congratulations! You guessed the word 'MOON'`|
-|`abandon`    | `You gave up:  The word was: 'MOON'`|
+| Player message | Game response                                                |
+| -------------- | ------------------------------------------------------------ |
+| `start`        | `Game started! 6 letter word: ------ \| 9 guesses left`      |
+| `letter A`     | `Bad guess!    6 letter word: ------ \| 8 guesses left`      |
+| `letter E`     | `Good guess!   6 letter word: -E---- \| 8 guesses left`      |
+| `guess LENTIL` | `Bad guess!    6 letter word: -E---- \| 7 guesses left`      |
+| `guess PENCIL` | `Congrats!     The word was:  PENCIL \| You guessed: PENCIL` |
+| `abandon`      | `You gave up!  The word was:  PENCIL \| You guessed: -E----` |
+| `add LENTIL`   | `Added word 'LENTIL' to the list`                            |
+| `add LENTIL`   | `Word 'LENTIL' was already in the list of words`             |
 
 ## Version 0.0.1
 
